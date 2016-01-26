@@ -1,0 +1,7 @@
+#!/bin/sh
+
+export LOGDIR=/var/log/vnc4server
+export SVCUSER=vnc
+
+mkdir -p "${LOGDIR}" && chown ${SVCUSER}:${SVCUSER} "${LOGDIR}"
+exec /sbin/setuser ${SVCUSER}  svlogd -tt "${LOGDIR}"

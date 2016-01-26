@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Run the service as the vnc user
+export HOME="/home/vnc"
+
+# If the VNC password is not configured yet, let's add it.
+if  [ ! -f "$HOME/.vnc/passwd" ]; then
+  mkdir -p "$HOME/.vnc"
+
+  # We try to read the password from $HOME/Documents/vncpasswd.
+  # VNC passwords must be between 6 and 8 characters long.
+  if  [ -f "$HOME/Documents/vncpasswd" ]; then
+    export PASS=`cat "$HOME/Documents/vncpasswd"`
+
+  # If the file does not exist, a random pass is created and stored there.
+  else
+    export PASS=`openssl rand -base64 6`
+    echo "$PASS" > "$HOME/Documents/vncpasswd"
+  fi
+
+  # Dump the password to stdout and set it with `vncpasswd`
+  echo
+  echo "*********************************"
+  echo "** VNC PASSWORD: ** '$PASS' **"
+  echo "*********************************"
+  echo
+  echo -e "${PASS}\n${PASS}" | vncpasswd
+fi
+
+# Change ownership of documents dir
+chown -R "vnc:vnc" "$HOME"
+chmod 0600 "$HOME/.vnc/passwd"

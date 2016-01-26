@@ -1,0 +1,9 @@
+/home/vnc/.vnc/*.log {
+    daily
+    rotate 10
+    compress
+    delaycompress
+    missingok
+    notifempty
+    nocreate
+}

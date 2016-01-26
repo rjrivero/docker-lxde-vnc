@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cd /home/vnc
+
+# Turn the geometry list into command line parameters
+/sbin/setuser vnc vncserver :1 -depth 24 -geometry \
+	`echo $GEOMETRY | sed 's/:/ -geometry /g'`
+
+# VNCserver runs in background, we need to have a process
+# that keeps runit listening.
+exec tail --follow=name /home/vnc/.vnc/*.log
