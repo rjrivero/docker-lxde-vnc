@@ -44,7 +44,7 @@ VNC password
 ------------
 
 At startup, the server tries to read an VNC password from the file
-**/home/vnc/Docuemtns/vncpasswd**.
+**/home/vnc/Documents/vncpasswd**.
 
   - If the file exists, its contents are used as the VNC password.
   - Otherwise, a random password is generated and dumped to stdout. You can see the generated password in the *docker log*.
@@ -56,7 +56,7 @@ Volumes
 
 You can mount a data volume under */home/vnc/Documents*. The init scripts change ownership
 of anything in that path to user **vnc**, group **vnc**, with UID and GID 1000. These UID and
-GID match the default numbers assigned to the first non-system user in an ubuntu system.
+GID match the default numbers assigned to the first non-system user in an Ubuntu system.
 
 
 Ports
