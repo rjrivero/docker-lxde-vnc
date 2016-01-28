@@ -15,7 +15,7 @@ RUN git clone --recursive https://github.com/kanaka/noVNC.git /opt/novnc && \
 
 # Add vnc user and group, with id 1000
 RUN groupadd -g 1000 vnc && \
-    useradd -m -d /home/vnc -s /bin/bash -u 1000 -g vnc vnc && \
+    useradd -m -d /home/vnc -s /bin/bash -u 1000 -g vnc -G sudo vnc && \
     mkdir /home/vnc/.vnc && \
     chown -R vnc:vnc /opt/novnc
 
@@ -25,6 +25,9 @@ ADD files/my_init.d   /etc/my_init.d
 
 # Enable rotation of VNC logs
 ADD files/logrotate.d /etc/logrotate.d
+
+# Enable passwordless sudo for vnc user
+ADD files/sudoers.d/vnc /etc/sudoers.d/vnc
 
 # Requested geometries, in a colon-separated list.
 ENV GEOMETRY 800x600:1920x1080:1920x920:1280x800:1280x720:1024x768

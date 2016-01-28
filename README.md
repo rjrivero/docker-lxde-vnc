@@ -51,12 +51,20 @@ At startup, the server tries to read an VNC password from the file
 
 VNC passwords must be between *6 and 8 characters long*. Shorter or longer passwords will fail.
 
+User
+----
+
+The session is run as an user named **vnc** (UID 1000) in groups **vnc**
+(GID 1000) and **sudo**. UID and GID 1000 were chosen because they are the
+IDs that the first regular user in an Ubuntu installation gets.
+
+The *vnc* user is able to run passwordless sudo.
+
 Volumes
 -------
 
 You can mount a data volume under */home/vnc/Documents*. The init scripts change ownership
-of anything in that path to user **vnc**, group **vnc**, with UID and GID 1000. These UID and
-GID match the default numbers assigned to the first non-system user in an Ubuntu system.
+of anything in that path to user **vnc**.
 
 
 Ports
