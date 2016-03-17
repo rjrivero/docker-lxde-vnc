@@ -18,26 +18,26 @@ Usage
 From Docker registry:
 
 ```
-docker pull rjrivero/vnc-lxde
+docker pull rjrivero/lxde-vnc
 ```
 
 Or build yourself:
 
 ```
-git clone https://github.com/rjrivero/docker-vnc-lxde.git
-docker build --rm -t rjrivero/vnc-lxde docker-vnc-lxde
+git clone https://github.com/rjrivero/docker-lxde-vnc.git
+docker build --rm -t rjrivero/lxde-vnc docker-lxde-vnc
 ```
 
 Running the image:
 
 ```
-docker run --rm -p 6080:6080 -v </path/to/your/Documents/folder>:/home/vnc/Documents rjrivero/vnc-lxde
+docker run --rm -p 6080:6080 -v </path/to/your/Documents/folder>:/home/vnc/Documents rjrivero/lxde-vnc
 ```
 
 Use in your Dockerfile:
 
 ```
-FROM rjrivero/vnc-lxde:<tag>
+FROM rjrivero/lxde-vnc:<tag>
 ```
 
 VNC password
@@ -65,7 +65,6 @@ Volumes
 
 You can mount a data volume under */home/vnc/Documents*. The init scripts change ownership
 of anything in that path to user **vnc**.
-
 
 Ports
 -----
